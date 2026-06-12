@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Surfers Pro Tips</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 420px;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);
+            padding: 16px 14px;
+            text-align: center;
+            border-bottom: 3px solid #FFB74D;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .header h2 {
+            font-size: 18px;
+            margin-bottom: 4px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        
+        .header p {
+            font-size: 11px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .version {
+            font-size: 9px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+        
+        .content {
+            padding: 14px 12px;
+        }
+        
+        .section {
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.12);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #FFB74D;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #FFE5CC;
+            font-weight: bold;
+        }
+        
+        .tips-list {
+            font-size: 12px;
+            line-height: 1.6;
+            list-style: none;
+        }
+        
+        .tips-list li {
+            margin-bottom: 6px;
+            padding-left: 18px;
+            position: relative;
+        }
+        
+        .tips-list li:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #FFB74D;
+        }
+        
+        .char-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 11px;
+        }
+        
+        .char-card {
+            background: rgba(0,0,0,0.15);
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid rgba(255,181,77,0.3);
+        }
+        
+        .char-name {
+            font-weight: bold;
+            color: #FFB74D;
+            margin-bottom: 2px;
+        }
+        
+        .char-trait {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 14px 0;
+        }
+        
+        .btn {
+            padding: 11px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary {
+            background: #FFB74D;
+            color: #FF5722;
+        }
+        
+        .btn-primary:hover {
+            background: #FFC46D;
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.5);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.8);
+        }
+        
+        .leaderboard {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+        
+        .leaderboard::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .leaderboard::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+        }
+        
+        .leaderboard::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+        
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 11px;
+        }
+        
+        .leaderboard-item:last-child {
+            border-bottom: none;
+        }
+        
+        .rank {
+            font-weight: bold;
+            color: #FFB74D;
+            min-width: 18px;
+        }
+        
+        .rank.gold {
+            color: #FFD700;
+        }
+        
+        .rank.silver {
+            color: #C0C0C0;
+        }
+        
+        .rank.bronze {
+            color: #CD7F32;
+        }
+        
+        .player-name {
+            flex: 1;
+            margin: 0 8px;
+            font-weight: 500;
+        }
+        
+        .score {
+            color: #FFB74D;
+            font-weight: bold;
+            text-align: right;
+            min-width: 70px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 10px 12px;
+            font-size: 10px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+        
+        .footer a {
+            color: #FFE5CC;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid #FFB74D;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>🎮 Subway Surfers</h2>
+        <p>Pro Tips & Strategies</p>
+        <div class="version">v1.0.0</div>
+    </div>
+    
+    <div class="content">
+        <!-- Quick Tips -->
+        <div class="section">
+            <h3>💡 Quick Tips</h3>
+            <ul class="tips-list">
+                <li>Swipe early to avoid obstacles ahead</li>
+                <li>Jump over trains, slide under barriers</li>
+                <li>Collect special coins for bonus points</li>
+                <li>Chain moves for 2x multiplier</li>
+                <li>Hoverboard saves you from crashes</li>
+            </ul>
+        </div>
+        
+        <!-- Best Characters -->
+        <div class="section">
+            <h3>🏃 Best Characters</h3>
+            <div class="char-grid">
+                <div class="char-card">
+                    <div class="char-name">Jake</div>
+                    <div class="char-trait">Balanced Power</div>
+                </div>
+                <div class="char-card">
+                    <div class="char-name">Lucy</div>
+                    <div class="char-trait">Coin Master</div>
+                </div>
+                <div class="char-card">
+                    <div class="char-name">Tricky</div>
+                    <div class="char-trait">Power Expert</div>
+                </div>
+                <div class="char-card">
+                    <div class="char-name">Fresh</div>
+                    <div class="char-trait">Speed Runner</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Leaderboard -->
+        <div class="section">
+            <h3>🏆 This Week's Top Players</h3>
+            <div class="leaderboard">
+                <div class="leaderboard-item">
+                    <span class="rank gold">🥇</span>
+                    <span class="player-name">Shadow Master</span>
+                    <span class="score">2.8M</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank silver">🥈</span>
+                    <span class="player-name">Nova Runner</span>
+                    <span class="score">2.6M</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank bronze">🥉</span>
+                    <span class="player-name">Speed Demon</span>
+                    <span class="score">2.4M</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">4</span>
+                    <span class="player-name">Golden Dash</span>
+                    <span class="score">2.1M</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">5</span>
+                    <span class="player-name">Cyber Knight</span>
+                    <span class="score">1.9M</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">6</span>
+                    <span class="player-name">Tech Runner</span>
+                    <span class="score">1.8M</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">7</span>
+                    <span class="player-name">Pro Gamer</span>
+                    <span class="score">1.7M</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">8</span>
+                    <span class="player-name">Subway King</span>
+                    <span class="score">1.6M</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="btn btn-primary" id="openWebsite">🌐 Visit Site</button>
+            <button class="btn btn-secondary" id="viewGuide">📖 Full Guide</button>
+        </div>
+        
+        <!-- Power-ups Section -->
+        <div class="section">
+            <h3>⚡ Power-ups Ranking</h3>
+            <ul class="tips-list">
+                <li><strong>Hoverboard</strong> - Most important, saves from crash</li>
+                <li><strong>Magnet</strong> - Attracts nearby coins automatically</li>
+                <li><strong>Multiplier</strong> - Doubles your score gains</li>
+                <li><strong>Shield</strong> - Protection for one hit</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <strong>Subway Surfers Pro Tips</strong> - v1.0
+        <br>
+        <a href="https://subsurfapps.com">Visit subsurfapps.com</a>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
